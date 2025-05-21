@@ -1,0 +1,129 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+nav{
+    background-color: lightgray;
+    color: black;
+    padding:10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav li{
+    list-style: none;;
+}
+
+nav a{
+    text-decoration: none;
+    color:black;
+    padding: 10px;
+    font-weight: bold;
+}
+
+nav li a:hover{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+/* Sombra naranja para la tarjeta */
+.card.shadow {
+  box-shadow: 0 4px 20px rgba(255, 119, 0, 0.5); /* sombra naranja */
+  border: 2px solid #ff7700; /* borde naranja */
+}
+
+/* Botón color naranja */
+.btn-primary {
+  background-color: #ff7700;
+  border-color: #ff7700;
+}
+
+/* Al pasar el mouse, un poco más oscuro */
+.btn-primary:hover {
+  background-color: #e06900;
+  border-color: #e06900;
+}
+
+/* Estilo general del contenedor */
+main .container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Input de nombre */
+input[name="nombre_estudiante"] {
+    height: 45px;
+    font-size: 1rem;
+}
+
+/* Fila de filtros: clase y fecha */
+.row.g-3.justify-content-center {
+    margin-top: 10px;
+    gap: 10px;
+}
+
+/* Dropdown y fecha con tamaños consistentes */
+.form-select, 
+input[type="date"] {
+    height: 45px;
+    font-size: 1rem;
+}
+
+/* Botón buscar */
+button[type="submit"] {
+    background-color: #ff8000;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 8px;
+    color: white;
+    
+}
+
+button[type="submit"]:hover {
+    background-color: #e67300;
+}
+
+/* Tarjetas de resultado */
+.card {
+    transition: transform 0.2s ease;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 128, 0, 0.3); /* sombra naranja */
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Mensaje de "no hay registros" */
+.alert-warning {
+    background-color: #ffe6e6; /* rojo muy suave */
+    color: #c0392b; /* rojo oscuro */
+    border: 1px solid #f5b7b1;
+    font-size: 1.1rem;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(192, 57, 43, 0.2); /* sombra roja */
+}
+
+
+
+

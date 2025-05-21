@@ -1,0 +1,86 @@
+
+    body {
+      background-color: rgb(255, 255, 255);
+      margin: 0px;
+      padding: 0px;
+      font-family: 'Lexend Deca', sans-serif;
+    }
+
+    .logoBarra {
+      max-width: 200px;
+      height: auto;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+  }
+
+    .container-fluid{
+      background-color: #ff7700;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+    .tituloChecklist{
+    font-size: 60px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgb(111, 106, 106);
+    }
+    
+
+    .nav-links {
+      background-color: rgb(250, 167, 0);
+      box-shadow: 0px 12px 15px rgba(221, 90, 2, 0.441);
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-top: 25px solid rgb(255, 255, 255);
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    
+.imagenes-representativas{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.card{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 6px 6px 10px rgb(221, 89, 2);
+  border-radius: 10px;
+}
+
+
+
+
+
+.letrasUniversidad {
+  font-size: 3rem; /* Responsivo con rem */
+  font-weight: bold;
+  color: rgb(255, 68, 0);
+  text-shadow: 1px 1px 10px rgb(234, 134, 4);
+  margin: 0;
+}
+
+.nombreUni {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoImagen {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+.logoImagen {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.57);
+  border-radius: 10px;
+}
+
+.container1{
+  background-color: rgb(255, 255, 255);
+
+}
