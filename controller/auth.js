@@ -251,12 +251,6 @@ const db = require('../db'); // Asegúrate de que tu conexión está correctamen
 exports.registro = (req, res) => {
   const { idestudiante, idasignacion } = req.body;
 
-  // Validar que llegaron los datos
-  if (!idestudiante || !idasignacion) {
-    return res.status(400).send('Faltan datos');
-  }
-
-  // Verificar si el estudiante está inscrito en esa asignación
   db.query(
     'SELECT idinscripcion FROM inscripcion WHERE idestudiante = ? AND idasignacion = ?',
     [idestudiante, idasignacion],
@@ -266,58 +260,75 @@ exports.registro = (req, res) => {
         return res.status(500).send('Error buscando inscripción');
       }
 
-      // Si no hay inscripción, renderiza el formulario con mensaje de error
       if (results.length === 0) {
-        cargarFormulario(res, 'Usuario no válido');
+        db.query('SELECT * FROM estudiante', (err, estudiantes) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).send('Error cargando estudiantes');
+          }
+
+          db.query(`
+            SELECT asignacion.idasignacion, materias.nombremateria, profesor.nombre AS nombreprofesor
+            FROM asignacion
+            JOIN materias ON asignacion.idmateria = materias.idmateria
+            JOIN profesor ON asignacion.cedulaprofesor = profesor.cedulaprofesor
+          `, (err, asignaciones) => {
+            if (err) {
+              console.error(err);
+              return res.status(500).send('Error cargando asignaciones');
+            }
+
+            res.render('registro', {
+              estudiantes,
+              asignaciones,
+              message3: 'Usuario no válido'
+            });
+          });
+        });
+
         return;
       }
 
-      // Si existe inscripción, insertar asistencia
+      // ✅ Si existe inscripción, registramos asistencia
       const idinscripcion = results[0].idinscripcion;
       const fecha = moment().tz('America/Bogota').format('YYYY-MM-DD HH:mm:ss');
 
       db.query(
         'INSERT INTO asistencias (idasignacion, fecha, idinscripcion) VALUES (?, ?, ?)',
         [idasignacion, fecha, idinscripcion],
-        (err) => {
+        (err, result) => {
           if (err) {
             console.error('Error insertando asistencia:', err);
             return res.status(500).send('Error registrando asistencia');
           }
 
-          // Renderizar con mensaje de éxito
-          cargarFormulario(res, null, 'Asistencia registrada exitosamente');
+          // 🔁 CONSULTAR ESTUDIANTES Y ASIGNACIONES OTRA VEZ
+          db.query('SELECT * FROM estudiante', (err, estudiantes) => {
+            if (err) {
+              console.error(err);
+              return res.status(500).send('Error cargando estudiantes');
+            }
+
+            db.query(`
+              SELECT asignacion.idasignacion, materias.nombremateria, profesor.nombre AS nombreprofesor
+              FROM asignacion
+              JOIN materias ON asignacion.idmateria = materias.idmateria
+              JOIN profesor ON asignacion.cedulaprofesor = profesor.cedulaprofesor
+            `, (err, asignaciones) => {
+              if (err) {
+                console.error(err);
+                return res.status(500).send('Error cargando asignaciones');
+              }
+
+              res.render('registro', {
+                estudiantes,
+                asignaciones,
+                message4: 'Asistencia registrada exitosamente'
+              });
+            });
+          });
         }
       );
     }
   );
 };
-
-// 🔁 Función auxiliar para cargar estudiantes y asignaciones
-function cargarFormulario(res, message3 = null, message4 = null) {
-  db.query('SELECT * FROM estudiante', (err, estudiantes) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error cargando estudiantes');
-    }
-
-    db.query(`
-      SELECT asignacion.idasignacion, materias.nombremateria, profesor.nombre AS nombreprofesor
-      FROM asignacion
-      JOIN materias ON asignacion.idmateria = materias.idmateria
-      JOIN profesor ON asignacion.cedulaprofesor = profesor.cedulaprofesor
-    `, (err, asignaciones) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error cargando asignaciones');
-      }
-
-      res.render('registro', {
-        estudiantes,
-        asignaciones,
-        message3,
-        message4
-      });
-    });
-  });
-}
