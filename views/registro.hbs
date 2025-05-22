@@ -45,15 +45,15 @@
     </div>
 
 
-      <div class="mb-3">
-        <label for="asignacion" class="form-label">Materia</label>
-        <select name="idasignacion" id="asignacion" class="form-select" required>
-          <option value="">Seleccione una materia</option>
-          {{#each asignaciones}}
-            <option value="{{idasignacion}}">{{nombremateria}} - {{nombreprofesor}}</option>
-          {{/each}}
-        </select>
-      </div>
+    <div class="mb-3">
+      <label for="materia" class="form-label">Materia</label>
+      <select name="idmateria" id="materia" class="form-select" required>
+        <option value="">Seleccione una materia</option>
+        <option value="1">programacion</option>
+        <option value="2">base de datos</option>
+      </select>
+    </div>
+
 
       {{#if message3}}
         <div class="alert alert-danger mt-3 text-center">{{message3}}</div>
