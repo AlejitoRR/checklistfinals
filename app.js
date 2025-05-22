@@ -1,5 +1,5 @@
 const express = require('express'); // importar express que nos ayuda a crear el servidor
-const mysql = require('mysql'); //improtarmos mysql para poder conectarnos a la base de datos
+const mysql = require('mysql2'); //improtarmos mysql para poder conectarnos a la base de datos
 const dotenv = require('dotenv'); //importamos dotenv para poder tener informacion sensible fuera de este principal archivo
 const path = require('path'); //importamos path para poder trabajar con rutas de archivos y carpetas
 const cookieParser = require('cookie-parser');
